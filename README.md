@@ -9,10 +9,7 @@
 김진우, 박유정, 이민아
 
 ## 코드
-
- Forecasting model
-
-## Import Necessary Libraries
+### Import Necessary Libraries
 
 
 ```python
@@ -30,7 +27,7 @@ import warnings
 warnings.filterwarnings('ignore')
 ```
 
-## Read in and Explore the Data 
+### Read in and Explore the Data 
 
 
 ```python
@@ -41,7 +38,7 @@ train = pd.merge(train_x,train_y)
 test = pd.read_csv("/content/loan_test.csv")
 ```
 
-## Data Analysis
+### Data Analysis
 
 unique(중복되지 않는 명목형 데이터의 갯수), top(최빈값), freq(최빈값의 빈도) 등의 3개의 index는 명목형 데이터에 대해서만 사용함
 
@@ -596,9 +593,9 @@ print(missingdata_df)
     33  total_rev_hi_lim   1996  0.124750
 
 
-## 데이터 시각화
+### 데이터 시각화
 
-### grade/subgrade
+#### grade/subgrade
 
 
 ```python
@@ -630,7 +627,7 @@ plt.show()
 ​    
 
 
-### addr_state
+#### addr_state
 
 
 ```python
@@ -672,7 +669,7 @@ plt.show()
 
 지역 별 채무불이행 비율 차이가 크지 않기 때문에 무시한다
 
-### home_ownership
+#### home_ownership
 
 
 ```python
@@ -690,7 +687,7 @@ plt.show()
 
 유의미한 차이를 보이는 MORTGAGE, RENT만 활용
 
-### purpose
+#### purpose
 
 
 ```python
@@ -709,11 +706,11 @@ plt.show()
 
 유의미한 차이를 보이는 credit_card만 활용
 
-## 데이터 축소
+### 데이터 축소
 
-### 의미없는 데이터 삭제
+#### 의미없는 데이터 삭제
 
-##### grade
+###### grade
 
 
 ```python
@@ -722,7 +719,7 @@ train = train.drop(['grade'], axis = 1)
 test = test.drop(['grade'], axis = 1)
 ```
 
-##### emp_title
+###### emp_title
 
 
 ```python
@@ -732,7 +729,7 @@ train = train.drop(['emp_title'], axis = 1)
 test = test.drop(['emp_title'], axis = 1)
 ```
 
-##### pymnt_plan
+###### pymnt_plan
 
 
 ```python
@@ -742,7 +739,7 @@ train = train.drop(['pymnt_plan'], axis = 1)
 test = test.drop(['pymnt_plan'], axis = 1)
 ```
 
-##### title
+###### title
 
 
 ```python
@@ -752,7 +749,7 @@ train = train.drop(['title'], axis = 1)
 test = test.drop(['title'], axis = 1)
 ```
 
-##### addr_state
+###### addr_state
 
 
 ```python
@@ -763,7 +760,7 @@ test = test.drop(['addr_state'], axis = 1)
 train = train.drop(['region'], axis = 1)
 ```
 
-##### policy_code
+###### policy_code
 
 
 ```python
@@ -774,9 +771,9 @@ test = test.drop(['policy_code'], axis = 1)
 
 ```
 
-### 데이터 상관관계
+#### 데이터 상관관계
 
-#### 상관관계 확인
+##### 상관관계 확인
 
 
 ```python
@@ -797,9 +794,9 @@ sns.heatmap(data=train_x.corr(), annot=True, fmt='.3f',linewidths=.4,cmap='Blues
 ​    
 
 
-#### 상관관계 높은 데이터 삭제
+##### 상관관계 높은 데이터 삭제
 
-##### out_prncp_inv
+###### out_prncp_inv
 
 
 ```python
@@ -807,7 +804,7 @@ train = train.drop(['out_prncp_inv'], axis = 1)
 test = test.drop(['out_prncp_inv'], axis = 1)
 ```
 
-##### collection_recovery_fee
+###### collection_recovery_fee
 
 
 ```python
@@ -815,7 +812,7 @@ train = train.drop(['collection_recovery_fee'], axis = 1)
 test = test.drop(['collection_recovery_fee'], axis = 1)
 ```
 
-#### 주성분 분석을 이용한 데이터 축소
+##### 주성분 분석을 이용한 데이터 축소
 loan_amnt, funded_amnt, funded_amnt_inv, installment
 
 
@@ -856,9 +853,9 @@ train = train.drop(['loan_amnt','funded_amnt','funded_amnt_inv','installment'],a
 test = test.drop(['loan_amnt','funded_amnt','funded_amnt_inv','installment'],axis=1)
 ```
 
-## Alphanumeric 데이터 & 문자 데이터
+### Alphanumeric 데이터 & 문자 데이터
 
-#### term
+##### term
 
 
 ```python
@@ -869,7 +866,7 @@ for i in range(0,len(test["term"])):
   test["term"][i] = int(test["term"][i][:3])
 ```
 
-#### sub_grade
+##### sub_grade
 
 
 ```python
@@ -918,7 +915,7 @@ for i in range(0,len(test["sub_grade"])):
   test["sub_grade"][i] = first
 ```
 
-### emp_length
+#### emp_length
 
 
 ```python
@@ -983,9 +980,9 @@ for i in range(0,len(test["emp_length"])):
   test["emp_length"][i] = length
 ```
 
-## 범주형 데이터
+### 범주형 데이터
 
-### home_ownership
+#### home_ownership
 
 
 ```python
@@ -1002,7 +999,7 @@ train = train.drop(['home_ownership'], axis = 1)
 test = test.drop(['home_ownership'], axis = 1)
 ```
 
-### purpose
+#### purpose
 
 
 ```python
@@ -1023,7 +1020,7 @@ train = train.drop(['purpose'], axis = 1)
 test = test.drop(['purpose'], axis = 1)
 ```
 
-### initial_list_status
+#### initial_list_status
 
 
 ```python
@@ -1230,9 +1227,9 @@ train.head()
 
 
 
-## 날짜 데이터
+### 날짜 데이터
 
-### earliest_cr_line
+#### earliest_cr_line
 
 
 ```python
@@ -1257,9 +1254,9 @@ for i in range(0,len(test["earliest_cr_line"])):
   test["earliest_cr_line"][i] = num_test
 ```
 
-##결측치 제거
+### 결측치 제거
 
-### emp_length
+#### emp_length
 
 
 ```python
@@ -1270,7 +1267,7 @@ for i in range(0,len(test["earliest_cr_line"])):
     train["emp_length"][i] = length
 ```
 
-### revol_util
+#### revol_util
 
 
 ```python
@@ -1278,7 +1275,7 @@ train = train.fillna(train.mean()['revol_util'])
 test = test.fillna(test.mean()['revol_util'])
 ```
 
-### tot_cur_bal : total_rev_hi_lim
+#### tot_cur_bal : total_rev_hi_lim
 
 
 ```python
@@ -1286,7 +1283,7 @@ train = train.fillna(train.mean()['tot_cur_bal':'total_rev_hi_lim'])
 test = test.fillna(test.mean()['tot_cur_bal':'total_rev_hi_lim'])
 ```
 
-## 이상치 제거
+### 이상치 제거
 
 
 ```python
@@ -1327,9 +1324,9 @@ max_test = np.max(test[i][outlier_recoveries(test[i])])
 test.loc[test[i]>max_test, i] = max_test
 ```
 
-## Model
+### Model
 
-### M1 : Logistic regression - Normal version
+#### M1 : Logistic regression - Normal version
 
 Splitting the Training Data
 
@@ -1361,7 +1358,7 @@ print(acc_M1)
     66.56
 
 
-###  M2 : Logistic regression - Stepwise Method version
+####  M2 : Logistic regression - Stepwise Method version
 
 변수선정
 
@@ -1463,7 +1460,7 @@ print(acc_M2)
     69.65
 
 
-### M3 : Decision Tree(CART)
+#### M3 : Decision Tree(CART)
 
 
 ```python
@@ -1486,7 +1483,7 @@ print(acc_M3)
     64.02
 
 
-### M4 : Decision Tree(CART) & avoiding overfitting problem (Using tree growth stopping rules)
+#### M4 : Decision Tree(CART) & avoiding overfitting problem (Using tree growth stopping rules)
 
 
 ```python
@@ -1559,7 +1556,7 @@ print(acc_M4)
     70.92
 
 
-### Compare result
+#### Compare result
 
 
 ```python
@@ -1621,7 +1618,7 @@ models.sort_values(by='Score', ascending=False)
 
 
 
-# Creating Submission File
+### Creating Submission File
 
 
 
